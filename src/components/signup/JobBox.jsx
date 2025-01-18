@@ -5,12 +5,18 @@ import {
   InputWrap,
   ContentWrap,
   ButtonWrap,
+  BackWrap,
   ToggleWrap,
+  Buttons
 } from "./styles";
 import SearchBox from "./JobBox/SearchBox";
 import {useState} from 'react';
+
 export function JobBox({ theme, setTheme, info, setInfo }) {
   const [text, setText] = useState('');
+  const handleBack = () => {
+    setTheme(theme-1);
+  }
   const handleSubmit = () => {
     if (text === ''){
       alert('데이터를 입력하세요')
@@ -30,7 +36,11 @@ export function JobBox({ theme, setTheme, info, setInfo }) {
           <LabelWrap>직업</LabelWrap>
           <SearchBox text={text} setText={setText}/>
         </ContentWrap>
-        <ButtonWrap onClick={handleSubmit}>다음</ButtonWrap>
+      <Buttons>
+
+              <ButtonWrap onClick={handleBack}>뒤로</ButtonWrap>
+              <ButtonWrap onClick={handleSubmit}>다음</ButtonWrap>
+              </Buttons>
       </FormWrap>
     </Wrap>
   );

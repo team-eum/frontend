@@ -7,6 +7,7 @@ import {
   ContentWrap,
   ButtonWrap,
   ToggleWrap,
+  Buttons
 } from "./styles";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
@@ -31,6 +32,9 @@ export function Datebox({ theme, setTheme, info, setInfo }) {
       job: info.job,
     }));
   };
+  const handleBack = () => {
+    setTheme(theme-1);
+  }
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -112,6 +116,11 @@ const formatTime = (date) => {
           )}
         </ListWrap>
         <ButtonWrap onClick={handleSubmit}>완료</ButtonWrap>
+        <Buttons>
+        
+                      <ButtonWrap onClick={handleBack}>뒤로</ButtonWrap>
+                      <ButtonWrap onClick={handleSubmit}>다음</ButtonWrap>
+                      </Buttons>
       </FormWrap>
     </Wrap>
   );
