@@ -1,7 +1,7 @@
 import { SignBox } from "../../components/signup/SignBox";
 import { useState } from "react";
 import { JobBox } from "../../components/signup/JobBox";
-import { Datebox } from '../../components/signup/DateBox';
+import { Datebox } from '../../components/signup/Datebox';
 function SignUp() {
   const [info, setInfo] = useState({
     id: '',
@@ -14,10 +14,10 @@ function SignUp() {
     date: '',
     job: '',
   });
-  const [theme,setTheme] = useState(3);
+  const [theme,setTheme] = useState(4);
   return (
     <>
-    {(theme !== 3) && (
+    {(theme !== 3) && (theme !== 4) && (
     <SignBox theme = {theme} setTheme = {setTheme} info = {info} setInfo={setInfo}/>
     )}
     {theme === 3 && <JobBox theme = {theme} setTheme = {setTheme} info = {info} setInfo={setInfo}/>}
