@@ -11,20 +11,29 @@ import {
 export function SignBox({ theme, setTheme, info, setInfo }) {
   const handleSubmit = () => {
     if (theme === 1) {
+      if (info.id === '' || info.password === '' || info.age === null){
+        alert('데이터를 입력하세요')
+        return;
+      }
       // Update name, age, phoneNumber
       setInfo((prevInfo) => ({
         ...prevInfo,
-        name: info.name,
+        id: info.id,
+        password: info.password,
         age: info.age,
-        phoneNumber: info.phoneNumber,
       }));
       setTheme(2);
     } else if (theme === 2) {
+      if (info.region === '' || info.gender === '' || info.phoneNumber === ''){
+        alert('데이터를 입력하세요')
+        return;
+      }
       // Update region, gender
       setInfo((prevInfo) => ({
         ...prevInfo,
-        region: info.region,
+        phoneNumber: info.phoneNumber,
         gender: info.gender,
+        region: info.region,
       }));
       setTheme(3);
 

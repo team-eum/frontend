@@ -7,14 +7,14 @@ function SignUp() {
     id: '',
     password: '',
     name:'',
-    age: new Date(),
+    age: null,
     phoneNumber: '',
     region: '',
-    gender:'남성',
-    keyword: [],
-    date: ''
+    gender:'',
+    date: '',
+    job: '',
   });
-  const [theme,setTheme] = useState(1);
+  const [theme,setTheme] = useState(3);
   return (
     <>
     {(theme !== 3) && (
