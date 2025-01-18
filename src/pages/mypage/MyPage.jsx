@@ -20,16 +20,18 @@ function MyPage() {
   const navigate = useNavigate();
   const { user } = useUser();
 
+  console.log(user);
+
   return (
     <Container>
       <Header />
       <TextContainer>
         <TitleText>{user.name || "user"}</TitleText>
       </TextContainer>
-      {user.role == "junior" ? (
+      {user.role == "J" ? (
         <CreditContainer>
           <CreditImage image={btn}></CreditImage>
-          <CreditText>1 credit</CreditText>
+          <CreditText>{user.credit} credit</CreditText>
         </CreditContainer>
       ) : (
         <></>
@@ -53,8 +55,8 @@ function MyPage() {
       </UserContainer>
       <Button
         className="skyblue"
-        title="EUM 사용하러 가기"
-        onClick={() => navigate("/login")}
+        title="일정 수정하기"
+        onClick={() => navigate("/mypage/schedule")}
       />
     </Container>
   );
