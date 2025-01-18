@@ -7,6 +7,7 @@ function Header() {
   //const { user } = useUser();
   const navigate = useNavigate();
 
+  //todo : 로그인 후 header 구현
   return (
     <Container>
       <LogoImage image={Logo}></LogoImage>

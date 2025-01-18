@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import Button from "../button/Button";
 import {
   ButtonContainer,
@@ -11,7 +10,6 @@ import {
 function ListItem(props) {
   const { name, keyword, date } = props;
   //const { user } = useUser();
-  const navigate = useNavigate();
 
   return (
     <Container>
@@ -21,11 +19,8 @@ function ListItem(props) {
         <Text>{date}</Text>
       </TextContainer>
       <ButtonContainer>
-        <Button
-          className="skyblue"
-          title="면담 확정"
-          onClick={() => navigate("/login")}
-        />
+        {/* todo : onclick으로 모달 창 */}
+        <Button className="skyblue" title="면담 확정" onClick={() => {}} />
       </ButtonContainer>
     </Container>
   );
