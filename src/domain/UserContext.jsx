@@ -23,16 +23,13 @@ export const UserProvider = ({ children }) => {
   const login = async (user_id, password) => {
     try {
       const payload = { username: user_id, password: password };
-      const response = await fetch(
-        "https://prod.eum-backend.scdn.pw/user/signin",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
+      const response = await fetch(`${process.env.BASE_URL}/user/signin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);

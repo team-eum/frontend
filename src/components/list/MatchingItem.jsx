@@ -14,17 +14,14 @@ function ListItem(props) {
 
   const handleInterviewConfirm = async () => {
     try {
-      const response = await fetch(
-        `https://prod.eum-backend.scdn.pw/appointment`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({}),
-        }
-      );
+      const response = await fetch(`${process.env.BASE_URL}/appointment`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({}),
+      });
 
       if (response.ok) {
         alert(`${name}님의 면담이 확정되었습니다.`);

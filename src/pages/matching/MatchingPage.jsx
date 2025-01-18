@@ -17,7 +17,7 @@ function MatchingPage() {
 
       try {
         const response = await fetch(
-          "https://prod.eum-backend.scdn.pw/appointment?status=pending",
+          `${process.env.BASE_URL}/appointment?status=pending`,
           {
             method: "GET",
             headers: {

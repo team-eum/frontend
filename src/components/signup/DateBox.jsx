@@ -7,7 +7,7 @@ import {
   ContentWrap,
   ButtonWrap,
   ToggleWrap,
-  Buttons
+  Buttons,
 } from "./styles";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
@@ -29,7 +29,6 @@ const ListItem = styled.div`
   padding-bottom: 10px;
 `;
 export function Datebox({ theme, setTheme, info, setInfo }) {
-
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -42,10 +41,10 @@ export function Datebox({ theme, setTheme, info, setInfo }) {
     return date.toLocaleDateString("ko-KR", options); // "월", "화", "수" 등
   };
 
-const formatTime = (date) => {
-  const options = { hour: "2-digit", minute: "2-digit" };
-  return date.toLocaleTimeString("ko-KR", options); // 시간 형식: "14:00"
-};
+  const formatTime = (date) => {
+    const options = { hour: "2-digit", minute: "2-digit" };
+    return date.toLocaleTimeString("ko-KR", options); // 시간 형식: "14:00"
+  };
 
   const handleAddTimeRange = () => {
     if (selectedDate && startTime && endTime) {
@@ -61,11 +60,12 @@ const formatTime = (date) => {
     }
   };
   console.log(timeList);
-  async function handleSubmit (){
-    await axios.post('https://prod.eum-backend.scdn.pw/appointment', timeList,{
+  async function handleSubmit() {
+    await axios.post(`${process.env.BASE_URL}/appointment`, timeList, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`,
-      }});
+        Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+      },
+    });
   }
   useEffect(() => {
     const today = new Date();
@@ -74,8 +74,8 @@ const formatTime = (date) => {
   }, []);
   console.log(startTime, endTime);
   const handleDelete = (index) => {
-    const newTimeList = timeList.filter((_, i) => i !== index);  // 해당 인덱스를 제외한 새로운 배열 생성
-    setTimeList(newTimeList);  // 상태 업데이트
+    const newTimeList = timeList.filter((_, i) => i !== index); // 해당 인덱스를 제외한 새로운 배열 생성
+    setTimeList(newTimeList); // 상태 업데이트
   };
   return (
     <Wrap>
@@ -111,11 +111,13 @@ const formatTime = (date) => {
             timeList.map((item, index) => (
               <ListItem key={index}>
                 {formatDayOfWeek(item.startDateTime)}{" "}
-                {formatTime(item.startDateTime)} -
-                {formatTime(item.endDateTime)}
-                <button onClick={() => handleDelete(index)} style={{ marginLeft: '10px', color: 'red' }}>
-              x
-            </button>
+                {formatTime(item.startDateTime)} -{formatTime(item.endDateTime)}
+                <button
+                  onClick={() => handleDelete(index)}
+                  style={{ marginLeft: "10px", color: "red" }}
+                >
+                  x
+                </button>
               </ListItem>
             ))
           ) : (
@@ -123,9 +125,7 @@ const formatTime = (date) => {
           )}
         </ListWrap>
         <ButtonWrap onClick={handleSubmit}>완료</ButtonWrap>
-        <Buttons>
-
-                      </Buttons>
+        <Buttons></Buttons>
       </FormWrap>
     </Wrap>
   );

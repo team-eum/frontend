@@ -17,7 +17,7 @@ function SchedulePage() {
 
       try {
         const response = await fetch(
-          "https://prod.eum-backend.scdn.pw/appointment?status=accepted",
+          `${process.env.BASE_URL}/appointment?status=accepted`,
           {
             method: "GET",
             headers: {
