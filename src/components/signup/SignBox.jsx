@@ -79,6 +79,19 @@ export function SignBox({ theme, setTheme, info, setInfo }) {
             value={theme === 1? info.password: info.name}
           ></InputWrap>
         </ContentWrap>
+        {(theme === 1) &&
+        (<ContentWrap>
+          <LabelWrap>지역</LabelWrap>
+          <InputWrap
+            maxLength={20}
+            // onKeyUp={props.onKeyUp}
+            onChange={(e) => {
+                setInfo((prevInfo) => ({ ...prevInfo, area: e.target.value }))
+            }}
+            type='name'
+            value={info.area}
+          ></InputWrap>
+        </ContentWrap>)}
         <ContentWrap>
           <LabelWrap>{theme === 1 ? "나이" : "성별"}</LabelWrap>
           {theme === 1 && (
