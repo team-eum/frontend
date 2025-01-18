@@ -12,19 +12,23 @@ import {
 } from "./styles";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
-export async function fetchLogin(data) {
-  const response = await axios.post("https://prod.eum-backend.scdn.pw/user/signin", data);
-  
-}
+import { useUser } from "../../domain/UserContext";
+
 function Login() {
-  const navigate = useNavigate();
   const [info, setInfo] = useState({
     username: "",
     password: "",
   });
+  const navigate =  useNavigate()
+  const {login} = useUser();
   const handleSubmit = async () => {
+    try {
     // Update region, gender
-    await fetchLogin(info);
+    await login(info.username,info.password);
+    navigate('/');
+    } catch(error) {
+      console.error(error);
+    }
   };
   const handleKakaoSubmit = () => {
     // Update region, gender
