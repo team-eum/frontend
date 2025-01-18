@@ -16,6 +16,8 @@ export const FormWrap = styled.div`
   flex-direction: column;
   gap: 24px;
   min-width: 360px;
+  max-width: 520px;
+  width: 100%;
   background-color: white;
   border: 1px solid #b3b3b3;
   border-radius: 16px;
