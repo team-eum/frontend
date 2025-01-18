@@ -11,7 +11,6 @@ import {
 } from "./styles";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import "react-calendar/dist/Calendar.css";
 const ListWrap = styled.div`
   margin-top: 20px;
 `;
