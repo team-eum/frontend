@@ -4,16 +4,16 @@ export const Wrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: #FBFBFB;
+  background: #fbfbfb;
   height: 100vh;
   align-items: center;
   justify-content: center;
 `;
 export const BackWrap = styled.div`
   position: absolute;
-  top:16px;
-  left:16px;
-`
+  top: 16px;
+  left: 16px;
+`;
 export const FormWrap = styled.div`
   padding: 32px;
   display: flex;
@@ -47,12 +47,11 @@ export const InputWrap = styled.input`
   box-sizing: border-box;
 `;
 export const Buttons = styled.div`
-    width: 100%;
+  width: 100%;
   display: flex;
   gap: 16px;
-  justify-center: center;
-
-`
+  justify-content: center;
+`;
 export const ButtonWrap = styled.div`
   width: 100%;
   background-color: #5dadec;
