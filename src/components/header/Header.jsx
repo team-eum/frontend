@@ -23,12 +23,16 @@ function Header() {
         </ButtonContainer>
       ) : (
         <ButtonContainer>
-          <NavItem to="/login">
-            <Button title="로그인" className="yellow"></Button>
-          </NavItem>
-          <NavItem to="/register">
-            <Button title="회원가입" className="brown"></Button>
-          </NavItem>
+          <Button
+            className="skyblue"
+            title="로그인"
+            onClick={() => navigate("/login")}
+          />
+          <Button
+            className="grey"
+            title="회원가입"
+            onClick={() => navigate("/login")}
+          />
         </ButtonContainer>
       )}
     </Container>
