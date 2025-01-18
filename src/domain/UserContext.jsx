@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import axios from 'axios';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -23,17 +22,17 @@ export const UserProvider = ({ children }) => {
 
   const login = async (user_id, password) => {
     try {
-      const payload = {username: user_id, password: password};
-      const response = await fetch("https://prod.eum-backend.scdn.pw/user/signin",{
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-    //   const response = await axios.post("https://eum.scdn.pw/singin", {
-
-    // })
+      const payload = { username: user_id, password: password };
+      const response = await fetch(
+        "https://prod.eum-backend.scdn.pw/user/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
