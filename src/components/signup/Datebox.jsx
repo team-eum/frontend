@@ -7,9 +7,10 @@ import {
   ContentWrap,
   ButtonWrap,
   ToggleWrap,
-  Buttons
+  Buttons,
 } from "./styles";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 const ListWrap = styled.div`
@@ -29,12 +30,11 @@ const ListItem = styled.div`
   padding-bottom: 10px;
 `;
 export function Datebox({ theme, setTheme, info, setInfo }) {
-
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [timeList, setTimeList] = useState([]);
-
+  const navigate = useNavigate();
   const formatDayOfWeek = (date) => {
     console.log(date);
     const options = { weekday: "short" }; // 요일을 짧게 출력: "Mon", "Tue", "Wed"
@@ -42,17 +42,20 @@ export function Datebox({ theme, setTheme, info, setInfo }) {
     return date.toLocaleDateString("ko-KR", options); // "월", "화", "수" 등
   };
 
-const formatTime = (date) => {
-  const options = { hour: "2-digit", minute: "2-digit" };
-  return date.toLocaleTimeString("ko-KR", options); // 시간 형식: "14:00"
-};
+  const formatTime = (date) => {
+    const options = { hour: "2-digit", minute: "2-digit" };
+    return date.toLocaleTimeString("ko-KR", options); // 시간 형식: "14:00"
+  };
 
   const handleAddTimeRange = () => {
     if (selectedDate && startTime && endTime) {
       const startDateTime = new Date(`${selectedDate}T${startTime}`);
       const endDateTime = new Date(`${selectedDate}T${endTime}`);
 
-      setTimeList((prevList) => [...prevList, { startDateTime, endDateTime }]);
+      setTimeList((prevList) => [
+        ...prevList,
+        { start: startDateTime, end: endDateTime },
+      ]);
       setSelectedDate("");
       setStartTime("");
       setEndTime("");
@@ -60,13 +63,16 @@ const formatTime = (date) => {
       alert("날짜와 시간을 모두 선택해주세요.");
     }
   };
-  console.log(timeList);
-  async function handleSubmit (){
-    await axios.post('https://prod.eum-backend.scdn.pw/appointment', timeList,{
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`,
-      }});
-  }
+  useEffect(() => {
+    setInfo((prev) => ({ ...prev, available_date: timeList }));
+  }, [timeList]);
+
+    async function handleSubmit() {
+    console.log(info);
+
+    const response = await axios.post('https://prod.eum-backend.scdn.pw/user/signup', info);     
+          navigate('/login');
+      }
   useEffect(() => {
     const today = new Date();
     const formattedDate = today.toISOString().split("T")[0]; // YYYY-MM-DD 형식
@@ -74,8 +80,8 @@ const formatTime = (date) => {
   }, []);
   console.log(startTime, endTime);
   const handleDelete = (index) => {
-    const newTimeList = timeList.filter((_, i) => i !== index);  // 해당 인덱스를 제외한 새로운 배열 생성
-    setTimeList(newTimeList);  // 상태 업데이트
+    const newTimeList = timeList.filter((_, i) => i !== index); // 해당 인덱스를 제외한 새로운 배열 생성
+    setTimeList(newTimeList); // 상태 업데이트
   };
   return (
     <Wrap>
@@ -110,12 +116,14 @@ const formatTime = (date) => {
           {timeList.length > 0 ? (
             timeList.map((item, index) => (
               <ListItem key={index}>
-                {formatDayOfWeek(item.startDateTime)}{" "}
-                {formatTime(item.startDateTime)} -
-                {formatTime(item.endDateTime)}
-                <button onClick={() => handleDelete(index)} style={{ marginLeft: '10px', color: 'red' }}>
-              x
-            </button>
+                {formatDayOfWeek(item.start)} {formatTime(item.start)} -
+                {formatTime(item.end)}
+                <button
+                  onClick={() => handleDelete(index)}
+                  style={{ marginLeft: "10px", color: "red" }}
+                >
+                  x
+                </button>
               </ListItem>
             ))
           ) : (
@@ -123,9 +131,7 @@ const formatTime = (date) => {
           )}
         </ListWrap>
         <ButtonWrap onClick={handleSubmit}>완료</ButtonWrap>
-        <Buttons>
-
-                      </Buttons>
+        <Buttons></Buttons>
       </FormWrap>
     </Wrap>
   );

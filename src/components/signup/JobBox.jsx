@@ -56,9 +56,13 @@ export function JobBox({ theme, setTheme, info, setInfo }) {
     const updatedCategory = selectedOptions.map((option) => option.label);
 
     // Update region, gender
-    const updatedInfo = { ...info, category: updatedCategory };
-    await fetchSignup(updatedInfo);
-    navigate("/login");
+    setInfo((previnfo) => ({ ...previnfo, category: updatedCategory }));
+    // console.log(response);
+    // if (response.data && response.data.token) {
+    //   localStorage.setItem('jwtToken', response.data.token);
+    // }
+    // navigate("/login");
+    setTheme(4);
   };
   return (
     <Wrap>
