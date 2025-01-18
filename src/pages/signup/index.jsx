@@ -1,23 +1,22 @@
 import { SignBox } from "../../components/signup/SignBox";
 import { useState } from "react";
 import { JobBox } from "../../components/signup/JobBox";
-import { Datebox } from '../../components/signup/DateBox';
+import { Datebox } from '../../components/signup/Datebox';
 function SignUp() {
   const [info, setInfo] = useState({
-    id: '',
+    username: '',
     password: '',
     name:'',
-    age: null,
-    phoneNumber: '',
-    region: '',
+    birth: new Date(),
+    phone: '',
     gender:'',
-    date: '',
-    job: '',
+    category: '',
   });
-  const [theme,setTheme] = useState(3);
+  console.log(info);
+  const [theme,setTheme] = useState(1);
   return (
     <>
-    {(theme !== 3) && (
+    {(theme !== 3) && (theme !== 4) && (
     <SignBox theme = {theme} setTheme = {setTheme} info = {info} setInfo={setInfo}/>
     )}
     {theme === 3 && <JobBox theme = {theme} setTheme = {setTheme} info = {info} setInfo={setInfo}/>}

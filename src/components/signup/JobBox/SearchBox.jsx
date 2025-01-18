@@ -46,7 +46,7 @@ const SuggestionItem = styled.li`
   }
 `;
 
-function SearchBox({ text,setText }) {
+function SearchBox({ text, setText }) {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   // 예시 데이터
@@ -89,10 +89,10 @@ function SearchBox({ text,setText }) {
   };
 
   const handleSuggestionClick = (suggestion) => {
+    // alert(suggestion)
     setText(suggestion); // 선택된 항목을 입력창에 표시
     setSuggestions([]); // 목록 숨기기
   };
-  console.log(query);
   return (
     <Container>
       {/* 입력창 */}
@@ -108,8 +108,13 @@ function SearchBox({ text,setText }) {
         <SuggestionList>
           {suggestions.map((item, index) => (
             <SuggestionItem
-              key={item} // 고유한 값인 item 자체를 key로 사용
-              onClick={() => handleSuggestionClick(item)}
+              key={index} // 고유한 값인 index 자체를 key로 사용
+              onClick={(e) => {
+                console.log(`clicked ${item}`)
+                e.stopPropagation();
+                handleSuggestionClick(item);
+              }}
+              onMouseOver={() => console.log(item)}
             >
               {item}
             </SuggestionItem>

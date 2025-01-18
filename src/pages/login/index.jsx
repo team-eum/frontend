@@ -11,15 +11,20 @@ import {
   SignUpButton
 } from "./styles";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+export async function fetchLogin(data) {
+  const response = await axios.post("https://prod.eum-backend.scdn.pw/user/signin", data);
+  
+}
 function Login() {
   const navigate = useNavigate();
   const [info, setInfo] = useState({
-    id: "",
+    username: "",
     password: "",
   });
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Update region, gender
-    console.log(info);
+    await fetchLogin(info);
   };
   const handleKakaoSubmit = () => {
     // Update region, gender
@@ -35,9 +40,9 @@ function Login() {
               maxLength={20}
               // onKeyUp={props.onKeyUp}
               onChange={(e) => {
-                setInfo((prevInfo) => ({ ...prevInfo, id: e.target.value }));
+                setInfo((prevInfo) => ({ ...prevInfo, username: e.target.value }));
               }}
-              value={info.id}
+              value={info.username}
             ></InputWrap>
           </ContentWrap>
           <ContentWrap>

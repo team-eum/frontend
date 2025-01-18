@@ -6,34 +6,37 @@ import {
   ContentWrap,
   ButtonWrap,
   ToggleWrap,
+  Buttons
 } from "./styles";
 
 export function SignBox({ theme, setTheme, info, setInfo }) {
+  const handleBack = () => {
+    setTheme(1);
+  }
   const handleSubmit = () => {
     if (theme === 1) {
-      if (info.id === '' || info.password === '' || info.age === null){
+      if (info.username === '' || info.password === '' || info.birth === null){
         alert('데이터를 입력하세요')
         return;
       }
-      // Update name, age, phoneNumber
+      // Update name, birth, phone
       setInfo((prevInfo) => ({
         ...prevInfo,
-        id: info.id,
+        username: info.username,
         password: info.password,
-        age: info.age,
+        birth: info.birth,
       }));
       setTheme(2);
     } else if (theme === 2) {
-      if (info.region === '' || info.gender === '' || info.phoneNumber === ''){
+      if (info.region === '' || info.gender === '' || info.phone === ''){
         alert('데이터를 입력하세요')
         return;
       }
       // Update region, gender
       setInfo((prevInfo) => ({
         ...prevInfo,
-        phoneNumber: info.phoneNumber,
+        phone: info.phone,
         gender: info.gender,
-        region: info.region,
       }));
       setTheme(3);
 
@@ -42,6 +45,7 @@ export function SignBox({ theme, setTheme, info, setInfo }) {
   return (
     <Wrap>
       <FormWrap>
+        <img src="" />
         <ContentWrap>
           <LabelWrap>{theme === 1 ? "아이디" : "전화번호"}</LabelWrap>
           <InputWrap
@@ -49,34 +53,30 @@ export function SignBox({ theme, setTheme, info, setInfo }) {
             // onKeyUp={props.onKeyUp}
             onChange={(e) => {
               if (theme === 1) {
-                setInfo((prevInfo) => ({ ...prevInfo, id: e.target.value }));
+                setInfo((prevInfo) => ({ ...prevInfo, username: e.target.value }));
               } else {
                 setInfo((prevInfo) => ({
                   ...prevInfo,
-                  phoneNumber: e.target.value,
+                  phone: e.target.value,
                 }));
               }
             }}
-            value={theme === 1 ? info.id : info.phoneNumber}
+            value={theme === 1 ? info.username : info.phone}
           ></InputWrap>
         </ContentWrap>
+       
         <ContentWrap>
-          <LabelWrap>{theme === 1 ? "비밀번호" : "지역"}</LabelWrap>
+          <LabelWrap>{theme === 1 ? "비밀번호" : "이름"}</LabelWrap>
           <InputWrap
             maxLength={20}
             // onKeyUp={props.onKeyUp}
             onChange={(e) => {
-              if (theme === 1) {
-                setInfo((prevInfo) => ({ ...prevInfo, password: e.target.value }));
-              } else {
-                setInfo((prevInfo) => ({
-                  ...prevInfo,
-                  region: e.target.value,
-                }));
-              }
+              theme === 1? (
+                setInfo((prevInfo) => ({ ...prevInfo, password: e.target.value }))):
+                setInfo((prevInfo) => ({ ...prevInfo, name: e.target.value }))
             }}
-            type={`${theme === 1? 'password': 'text'}`}
-            value={theme === 1 ? info.password : info.region}
+            type={`${theme === 1 ?'password':'name'}`}
+            value={theme === 1? info.password: info.name}
           ></InputWrap>
         </ContentWrap>
         <ContentWrap>
@@ -85,8 +85,9 @@ export function SignBox({ theme, setTheme, info, setInfo }) {
             <InputWrap
               type="date"
               onChange={(e) => {
+
                 if (theme === 1) {
-                  setInfo((prevInfo) => ({ ...prevInfo, age: e.target.value }));
+                  setInfo((prevInfo) => ({ ...prevInfo, birth: e.target.value }));
                 }
               }}
             ></InputWrap>
@@ -95,22 +96,22 @@ export function SignBox({ theme, setTheme, info, setInfo }) {
             <ToggleWrap>
               <ButtonWrap
                 style={{
-                  backgroundColor: info.gender === "남성" ? "#5DADEC" : "#FFF",
-                  color: info.gender === "남성" ? "#FFF" : "#000",
+                  backgroundColor: info.gender === "M" ? "#5DADEC" : "#FFF",
+                  color: info.gender === "M" ? "#FFF" : "#000",
                 }}
                 onClick={() =>
-                  setInfo((prevInfo) => ({ ...prevInfo, gender: "남성" }))
+                  setInfo((prevInfo) => ({ ...prevInfo, gender: "M" }))
                 }
               >
                 남성
               </ButtonWrap>
               <ButtonWrap
                 style={{
-                  backgroundColor: info.gender === "여성" ? "#5DADEC" : "#FFF",
-                  color: info.gender === "여성" ? "#FFF" : "#000",
+                  backgroundColor: info.gender === "F" ? "#5DADEC" : "#FFF",
+                  color: info.gender === "F" ? "#FFF" : "#000",
                 }}
                 onClick={() =>
-                  setInfo((prevInfo) => ({ ...prevInfo, gender: "여성" }))
+                  setInfo((prevInfo) => ({ ...prevInfo, gender: "F" }))
                 }
               >
                 여성
@@ -118,7 +119,14 @@ export function SignBox({ theme, setTheme, info, setInfo }) {
             </ToggleWrap>
           )}
         </ContentWrap>
+ 
+        <Buttons>
+          {
+            (theme !== 1) &&
+        (<ButtonWrap onClick={handleBack}>뒤로</ButtonWrap>)
+          }
         <ButtonWrap onClick={handleSubmit}>다음</ButtonWrap>
+        </Buttons>
       </FormWrap>
     </Wrap>
   );
