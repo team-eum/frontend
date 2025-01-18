@@ -9,7 +9,6 @@ import {
 
 function ListItem(props) {
   const { name, keyword, date } = props;
-  //const { user } = useUser();
 
   return (
     <Container>

@@ -7,6 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   background: #fbfbfb;
   align-items: center;
+  padding-bottom: 60px;
 `;
 
 export const TextContainer = styled.div`
@@ -23,10 +24,15 @@ export const TextContainer = styled.div`
 
 export const TitleText = styled.h1`
   font-family: "Inter", sans-serif;
+  display: flex;
   white-space: pre-wrap;
   font-size: 48px;
   font-weight: 700;
   margin: 0;
+
+  .blue {
+    color: #5dadec;
+  }
 `;
 
 export const SubText = styled.h3`
@@ -34,4 +40,30 @@ export const SubText = styled.h3`
   white-space: pre-wrap;
   font-size: 24px;
   font-weight: 400;
+`;
+
+//script page style component
+
+export const SubTitleText = styled.h3`
+  width: 150px;
+  font-family: "Inter", sans-serif;
+  white-space: pre-wrap;
+  font-size: 25px;
+  font-weight: 700;
+`;
+
+export const SummaryContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  gap: 50px;
+  margin-bottom: 30px;
+`;
+
+export const SummaryText = styled.div`
+  width: 60%;
+  min-height: 200px;
+  border-radius: 15px;
+  padding: 5px;
+  border: 1px solid black;
 `;

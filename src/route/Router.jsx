@@ -4,6 +4,8 @@ import MatchingPage from "../pages/matching/MatchingPage";
 import SignUp from "../pages/signup";
 import Login from "../pages/login";
 import SchedulePage from "../pages/schedule/SchedulePage";
+import InterviewPage from "../pages/interview/InterviewPage";
+import ScriptPage from "../pages/interview/ScriptPage";
 
 function Router() {
   return (
@@ -12,6 +14,8 @@ function Router() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/matching" element={<MatchingPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
+        <Route path="/interview" element={<InterviewPage />} />
+        <Route path="/interview/:id" element={<ScriptPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>

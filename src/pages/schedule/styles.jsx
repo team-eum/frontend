@@ -29,18 +29,6 @@ export const TitleText = styled.h1`
   margin: 0;
 `;
 
-export const SubTitleText = styled.h3`
-  font-family: "Inter", sans-serif;
-  white-space: pre-wrap;
-  font-size: 28px;
-  font-weight: 400;
-  margin: 0;
-
-  &.sub {
-    color: rgba(67, 42, 0, 0.62);
-  }
-`;
-
 export const SubText = styled.h3`
   font-family: "Inter", sans-serif;
   white-space: pre-wrap;
