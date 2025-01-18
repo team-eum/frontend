@@ -28,10 +28,11 @@ export function JobBox({ theme, setTheme, info, setInfo }) {
       // Update region, gender
       setInfo((prevInfo) => ({
         ...prevInfo,
-        category: text,
+        category: [text],
       }));
+      const updatedInfo = { ...info, category: [text] };
 
-      await fetchSignup(info);
+      await fetchSignup(updatedInfo);
       navigate('/login');
   };
   return (

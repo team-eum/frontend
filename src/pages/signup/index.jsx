@@ -10,7 +10,7 @@ function SignUp() {
     birth: new Date(),
     phone: '',
     gender:'',
-    category: '',
+    category: [],
   });
   console.log(info);
   const [theme,setTheme] = useState(1);
