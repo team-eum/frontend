@@ -11,6 +11,7 @@ import {
 } from "./styles";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
 const ListWrap = styled.div`
   margin-top: 20px;
 `;
@@ -22,18 +23,13 @@ const ListItem = styled.div`
   background-color: #f9f9f9;
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 export function Datebox({ theme, setTheme, info, setInfo }) {
-  const handleSubmit = () => {
-    // Update region, gender
-    setInfo((prevInfo) => ({
-      ...prevInfo,
-      job: info.job,
-    }));
-  };
-  const handleBack = () => {
-    setTheme(theme-1);
-  }
+
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -65,13 +61,22 @@ const formatTime = (date) => {
     }
   };
   console.log(timeList);
+  async function handleSubmit (){
+    await axios.post('https://prod.eum-backend.scdn.pw/appointment', timeList,{
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`,
+      }});
+  }
   useEffect(() => {
     const today = new Date();
     const formattedDate = today.toISOString().split("T")[0]; // YYYY-MM-DD 형식
     setSelectedDate(formattedDate); // 현재 날짜를 기본값으로 설정
   }, []);
   console.log(startTime, endTime);
-
+  const handleDelete = (index) => {
+    const newTimeList = timeList.filter((_, i) => i !== index);  // 해당 인덱스를 제외한 새로운 배열 생성
+    setTimeList(newTimeList);  // 상태 업데이트
+  };
   return (
     <Wrap>
       <FormWrap>
@@ -108,6 +113,9 @@ const formatTime = (date) => {
                 {formatDayOfWeek(item.startDateTime)}{" "}
                 {formatTime(item.startDateTime)} -
                 {formatTime(item.endDateTime)}
+                <button onClick={() => handleDelete(index)} style={{ marginLeft: '10px', color: 'red' }}>
+              x
+            </button>
               </ListItem>
             ))
           ) : (
@@ -116,9 +124,7 @@ const formatTime = (date) => {
         </ListWrap>
         <ButtonWrap onClick={handleSubmit}>완료</ButtonWrap>
         <Buttons>
-        
-                      <ButtonWrap onClick={handleBack}>뒤로</ButtonWrap>
-                      <ButtonWrap onClick={handleSubmit}>다음</ButtonWrap>
+
                       </Buttons>
       </FormWrap>
     </Wrap>

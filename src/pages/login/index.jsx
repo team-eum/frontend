@@ -11,6 +11,7 @@ import {
   SignUpButton,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/header/Header";
 import { useUser } from "../../domain/UserContext";
 
 function Login() {
@@ -35,7 +36,10 @@ function Login() {
   };
   return (
     <>
+      <Header />
+
       <Wrap>
+
         <FormWrap>
           <ContentWrap>
             <LabelWrap>아이디 </LabelWrap>

@@ -9,11 +9,6 @@ export const Wrap = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export const BackWrap = styled.div`
-  position: absolute;
-  top: 16px;
-  left: 16px;
-`;
 export const FormWrap = styled.div`
   padding: 32px;
   display: flex;
@@ -26,7 +21,6 @@ export const FormWrap = styled.div`
   border: 1px solid #d9d9d9;
   border-radius: 16px;
   box-sizing: border-box;
-  background: #fbfbfb;
   position: relative;
 `;
 export const LabelWrap = styled.div`
