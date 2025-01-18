@@ -14,7 +14,7 @@ function SignUp() {
     gender:'',
     category: [],
   });
-  const [theme,setTheme] = useState(4);
+  const [theme,setTheme] = useState(1);
   return (
     <>
     <Header />
