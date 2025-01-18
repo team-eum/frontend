@@ -2,18 +2,14 @@ import {
   Wrap,
   FormWrap,
   LabelWrap,
-  InputWrap,
   ContentWrap,
   ButtonWrap,
-  ToggleWrap,
-  Buttons
+  Buttons,
 } from "./styles";
-import SearchBox from "./JobBox/SearchBox";
-import {useState} from 'react';
-import {fetchSignup} from './lib/fetchSignup'
+import { useState } from "react";
+import { fetchSignup } from "./lib/fetchSignup";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
-
 
 const options = [
   { value: "kiosk", label: "키오스크 사용법" },
@@ -31,7 +27,10 @@ const options = [
   { value: "youtube", label: "유튜브 시청 및 구독 방법" },
   { value: "music_streaming", label: "음악 스트리밍 앱 사용법" },
   { value: "data_management", label: "스마트폰 데이터 관리 및 정리 방법" },
-  { value: "online_hospital", label: "온라인 병원 예약 및 처방전 관리 앱 사용법" },
+  {
+    value: "online_hospital",
+    label: "온라인 병원 예약 및 처방전 관리 앱 사용법",
+  },
   { value: "mobile_payment", label: "모바일 결제 및 간편결제 서비스 사용법" },
   { value: "screenshot", label: "화면 캡처 및 스크린샷 활용 방법" },
   { value: "weather_app", label: "날씨 앱 및 미세먼지 정보 확인 방법" },
@@ -39,7 +38,7 @@ const options = [
 ];
 
 export function JobBox({ theme, setTheme, info, setInfo }) {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleChange = (selected) => {
@@ -47,19 +46,19 @@ export function JobBox({ theme, setTheme, info, setInfo }) {
   };
   const navigate = useNavigate();
   const handleBack = () => {
-    setTheme(theme-1);
-  }
+    setTheme(theme - 1);
+  };
   const handleSubmit = async () => {
-    if (selectedOptions.length === 0){
-      alert('데이터를 입력하세요')
+    if (selectedOptions.length === 0) {
+      alert("데이터를 입력하세요");
       return;
     }
     const updatedCategory = selectedOptions.map((option) => option.label);
 
-      // Update region, gender
-      const updatedInfo = { ...info, category: updatedCategory };
-      await fetchSignup(updatedInfo);
-      navigate('/login');
+    // Update region, gender
+    const updatedInfo = { ...info, category: updatedCategory };
+    await fetchSignup(updatedInfo);
+    navigate("/login");
   };
   return (
     <Wrap>
@@ -67,18 +66,17 @@ export function JobBox({ theme, setTheme, info, setInfo }) {
         <ContentWrap>
           <LabelWrap>직업</LabelWrap>
           <Select
-        isMulti
-        options={options}
-        value={selectedOptions}
-        onChange={handleChange}
-        placeholder="검색하세요..."
-      />  
-              </ContentWrap>
-      <Buttons>
-
-              <ButtonWrap onClick={handleBack}>뒤로</ButtonWrap>
-              <ButtonWrap onClick={handleSubmit}>가입하기</ButtonWrap>
-              </Buttons>
+            isMulti
+            options={options}
+            value={selectedOptions}
+            onChange={handleChange}
+            placeholder="검색하세요..."
+          />
+        </ContentWrap>
+        <Buttons>
+          <ButtonWrap onClick={handleBack}>뒤로</ButtonWrap>
+          <ButtonWrap onClick={handleSubmit}>가입하기</ButtonWrap>
+        </Buttons>
       </FormWrap>
     </Wrap>
   );

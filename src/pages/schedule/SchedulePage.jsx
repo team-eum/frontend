@@ -1,10 +1,41 @@
-//import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Header from "../../components/header/Header.jsx";
 import ListItem from "../../components/list/ScheduleItem.jsx";
+import { useUser } from "../../domain/UserContext.jsx";
 import { Container, TextContainer, TitleText, SubText } from "./styles.jsx";
 
 function SchedulePage() {
-  //const navigate = useNavigate();
+  const { user, token } = useUser();
+  const [appo, setAppo] = useState();
+
+  useEffect(() => {
+    const fetchSchedule = async () => {
+      if (!user) {
+        console.log("user not logged in");
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          "https://prod.eum-backend.scdn.pw/appointment?status=accepted",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = await response.json();
+        setAppo(data);
+        console.log("success on fetch schedule list");
+      } catch (error) {
+        console.error("Error fetching details:", error);
+      }
+    };
+
+    fetchSchedule();
+  }, [user, token]);
 
   return (
     <Container>
@@ -13,8 +44,18 @@ function SchedulePage() {
         <TitleText>나의 일정 목록</TitleText>
         <SubText>확정된 일정을 확인하세요!</SubText>
       </TextContainer>
-      {/* todo: api 연동 후 list 매핑 */}
-      <ListItem name="홍길동" keyword="키오스크 확인" date="월 14:00 - 16:00" />
+      {appo && appo.length > 0 ? (
+        appo.map((item, index) => (
+          <ListItem
+            key={index}
+            name={item.name}
+            keyword={item.keyword}
+            date={`${item.date} - ${item.time}`}
+          />
+        ))
+      ) : (
+        <SubText>일정이 없습니다.</SubText>
+      )}
     </Container>
   );
 }

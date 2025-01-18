@@ -8,7 +8,7 @@ import {
   ContentWrap,
   ButtonWrap,
   KakaoButtonWrap,
-  SignUpButton
+  SignUpButton,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
@@ -19,14 +19,14 @@ function Login() {
     username: "",
     password: "",
   });
-  const navigate =  useNavigate()
-  const {login} = useUser();
+  const navigate = useNavigate();
+  const { login } = useUser();
   const handleSubmit = async () => {
     try {
-    // Update region, gender
-    await login(info.username,info.password);
-    navigate('/mypage');
-    } catch(error) {
+      // Update region, gender
+      await login(info.username, info.password);
+      navigate("/");
+    } catch (error) {
       console.error(error);
     }
   };
@@ -47,7 +47,10 @@ function Login() {
               maxLength={20}
               // onKeyUp={props.onKeyUp}
               onChange={(e) => {
-                setInfo((prevInfo) => ({ ...prevInfo, username: e.target.value }));
+                setInfo((prevInfo) => ({
+                  ...prevInfo,
+                  username: e.target.value,
+                }));
               }}
               value={info.username}
             ></InputWrap>
@@ -68,7 +71,12 @@ function Login() {
             ></InputWrap>
           </ContentWrap>
           <ButtonWrap onClick={handleSubmit}>로그인</ButtonWrap>
-          <SignUpButton onClick={() => navigate('/signup')}>회원가입</SignUpButton>
+          <KakaoButtonWrap onClick={handleKakaoSubmit}>
+            카카오 로그인
+          </KakaoButtonWrap>
+          <SignUpButton onClick={() => navigate("/signup")}>
+            회원가입
+          </SignUpButton>
         </FormWrap>
       </Wrap>
     </>

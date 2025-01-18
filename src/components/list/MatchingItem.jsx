@@ -1,3 +1,4 @@
+import { useUser } from "../../domain/UserContext";
 import Button from "../button/Button";
 import {
   ButtonContainer,
@@ -9,19 +10,22 @@ import {
 
 function ListItem(props) {
   const { name, keyword, date } = props;
+  const { token } = useUser();
 
   const handleInterviewConfirm = async () => {
     try {
-      // 서버 요청
-      const response = await fetch(`/api/interviews/confirm`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ interviewId }), // 서버로 면담 ID 전달
-      });
+      const response = await fetch(
+        `https://prod.eum-backend.scdn.pw/appointment`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({}),
+        }
+      );
 
-      // 요청 성공 여부 확인
       if (response.ok) {
         alert(`${name}님의 면담이 확정되었습니다.`);
       } else {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Button from "../button/Button";
 import { FaMicrophone } from "react-icons/fa";
 import {
@@ -13,7 +13,7 @@ function ListItem(props) {
   const { name, keyword, date } = props;
 
   const [isRecording, setIsRecording] = useState(false);
-  const [recognition, setRecognition] = useState(null); // SpeechRecognition 객체를 저장
+  const [recognition, setRecognition] = useState(null);
   const [transcription, setTranscription] = useState("");
 
   const startRecording = () => {
@@ -24,12 +24,11 @@ function ListItem(props) {
       return;
     }
 
-    // Web Speech API 초기화
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognitionInstance = new SpeechRecognition();
 
-    recognitionInstance.lang = "ko-KR"; // 한국어 설정
+    recognitionInstance.lang = "ko-KR";
     recognitionInstance.interimResults = false;
     recognitionInstance.maxAlternatives = 1;
 
@@ -42,7 +41,7 @@ function ListItem(props) {
 
     recognitionInstance.onresult = (event) => {
       const text = event.results[0][0].transcript;
-      setTranscription(text);
+      setTranscription((prev) => prev + " " + text);
       console.log("음성 인식 결과:", text);
 
       // 서버로 텍스트 전송
@@ -60,7 +59,6 @@ function ListItem(props) {
       console.log("녹음 종료");
     };
 
-    // 녹음 시작
     recognitionInstance.start();
     setRecognition(recognitionInstance);
   };
@@ -74,10 +72,9 @@ function ListItem(props) {
   };
 
   const alertWithStopOption = async () => {
-    // 사용자에게 종료 버튼을 제공하는 alert
     const userInput = confirm("녹음 중입니다. 종료하려면 확인(OK)을 누르세요.");
     if (userInput) {
-      stopRecording(); // 사용자가 종료를 선택한 경우 녹음 중지
+      stopRecording();
     }
   };
 
@@ -91,7 +88,7 @@ function ListItem(props) {
         body: JSON.stringify({
           name,
           date,
-          transcription: text,
+          transcription: transcription + " " + text,
         }),
       });
 

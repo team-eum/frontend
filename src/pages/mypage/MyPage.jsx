@@ -13,12 +13,13 @@ import {
   UserTitle,
   UserContainer,
   UserDesc,
+  ButtonContainer,
 } from "./styles.jsx";
 import { useUser } from "../../domain/UserContext.jsx";
 
 function MyPage() {
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user, logout } = useUser();
 
   console.log(user);
 
@@ -53,11 +54,21 @@ function MyPage() {
         <UserTitle>관심사</UserTitle>
         <UserDesc>{user.category}</UserDesc>
       </UserContainer>
-      <Button
-        className="skyblue"
-        title="일정 수정하기"
-        onClick={() => navigate("/mypage/schedule")}
-      />
+      <ButtonContainer>
+        <Button
+          className="skyblue"
+          title="일정 수정하기"
+          onClick={() => navigate("/mypage/schedule")}
+        />
+        <Button
+          className="red"
+          title="로그아웃"
+          onClick={async () => {
+            await logout(user.name, user.password);
+            navigate("/");
+          }}
+        />
+      </ButtonContainer>
     </Container>
   );
 }
