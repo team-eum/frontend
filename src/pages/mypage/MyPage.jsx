@@ -34,7 +34,7 @@ function MyPage() {
       ) : (
         <></>
       )}
-      s
+
       <UserContainer>
         <UserTitle>생년월일</UserTitle>
         <UserDesc>{user.birth}</UserDesc>
