@@ -13,8 +13,10 @@ function SignUp() {
     phone: '',
     gender:'',
     category: [],
+    area: '',
+    // available_date: [],
   });
-  const [theme,setTheme] = useState(4);
+  const [theme,setTheme] = useState(1);
   return (
     <>
     <Header />
