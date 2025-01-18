@@ -4,7 +4,7 @@ export const Wrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: #f3f3f3;
+  background: #fbfbfb;
   height: 100vh;
   align-items: center;
   justify-content: center;
@@ -55,5 +55,5 @@ export const ToggleWrap = styled.div`
   width: 100%;
   display: flex;
   gap: 16px;
-  justify-center: center;
+  justify-content: center;
 `;
