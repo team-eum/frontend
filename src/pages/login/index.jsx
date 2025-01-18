@@ -11,7 +11,7 @@ import {
   SignUpButton
 } from "./styles";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+import Header from "../../components/header/Header";
 import { useUser } from "../../domain/UserContext";
 
 function Login() {
@@ -25,7 +25,7 @@ function Login() {
     try {
     // Update region, gender
     await login(info.username,info.password);
-    navigate('/');
+    navigate('/mypage');
     } catch(error) {
       console.error(error);
     }
@@ -36,7 +36,10 @@ function Login() {
   };
   return (
     <>
+      <Header />
+
       <Wrap>
+
         <FormWrap>
           <ContentWrap>
             <LabelWrap>아이디 </LabelWrap>
@@ -65,7 +68,6 @@ function Login() {
             ></InputWrap>
           </ContentWrap>
           <ButtonWrap onClick={handleSubmit}>로그인</ButtonWrap>
-          <KakaoButtonWrap onClick={handleKakaoSubmit}>카카오 로그인</KakaoButtonWrap>
           <SignUpButton onClick={() => navigate('/signup')}>회원가입</SignUpButton>
         </FormWrap>
       </Wrap>

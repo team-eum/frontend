@@ -67,3 +67,12 @@ export const SummaryText = styled.div`
   padding: 5px;
   border: 1px solid black;
 `;
+export const AllText = styled.div`
+  width: 60%;
+  min-height: 200px;
+  max-height: 400px;
+  border-radius: 15px;
+  padding: 5px;
+  border: 1px solid black;
+  overflow-y: auto;
+`;
