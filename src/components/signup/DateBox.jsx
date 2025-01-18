@@ -11,6 +11,7 @@ import {
 } from "./styles";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+
 const ListWrap = styled.div`
   margin-top: 20px;
 `;
@@ -22,18 +23,13 @@ const ListItem = styled.div`
   background-color: #f9f9f9;
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 export function Datebox({ theme, setTheme, info, setInfo }) {
-  const handleSubmit = () => {
-    // Update region, gender
-    setInfo((prevInfo) => ({
-      ...prevInfo,
-      job: info.job,
-    }));
-  };
-  const handleBack = () => {
-    setTheme(theme-1);
-  }
+
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -114,12 +110,12 @@ const formatTime = (date) => {
             <p>추가된 날짜가 없습니다.</p>
           )}
         </ListWrap>
-        <ButtonWrap onClick={handleSubmit}>완료</ButtonWrap>
+        {/* <ButtonWrap onClick={handleSubmit}>완료</ButtonWrap>
         <Buttons>
         
                       <ButtonWrap onClick={handleBack}>뒤로</ButtonWrap>
                       <ButtonWrap onClick={handleSubmit}>다음</ButtonWrap>
-                      </Buttons>
+                      </Buttons> */}
       </FormWrap>
     </Wrap>
   );
