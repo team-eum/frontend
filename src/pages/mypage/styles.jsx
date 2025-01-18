@@ -103,3 +103,9 @@ export const UserDesc = styled.div`
   flex-grow: 0;
   z-index: 1;
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+`;

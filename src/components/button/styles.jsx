@@ -22,4 +22,10 @@ export const StyledButton = styled.button`
     border: 1px solid #f3f3f3;
     color: black;
   }
+
+  &.red {
+    background-color: #d53d3d;
+    border: 1px solid #d53d3d;
+    color: white;
+  }
 `;
