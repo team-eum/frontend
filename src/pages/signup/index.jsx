@@ -4,17 +4,16 @@ import { JobBox } from "../../components/signup/JobBox";
 import { Datebox } from '../../components/signup/Datebox';
 function SignUp() {
   const [info, setInfo] = useState({
-    id: '',
+    username: '',
     password: '',
     name:'',
-    age: null,
-    phoneNumber: '',
-    region: '',
+    birth: new Date(),
+    phone: '',
     gender:'',
-    date: '',
-    job: '',
+    category: '',
   });
-  const [theme,setTheme] = useState(4);
+  console.log(info);
+  const [theme,setTheme] = useState(1);
   return (
     <>
     {(theme !== 3) && (theme !== 4) && (

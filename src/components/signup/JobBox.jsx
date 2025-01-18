@@ -11,13 +11,14 @@ import {
 } from "./styles";
 import SearchBox from "./JobBox/SearchBox";
 import {useState} from 'react';
+import {fetchSignup} from './lib/fetchSignup'
 
 export function JobBox({ theme, setTheme, info, setInfo }) {
   const [text, setText] = useState('');
   const handleBack = () => {
     setTheme(theme-1);
   }
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (text === ''){
       alert('데이터를 입력하세요')
       return;
@@ -25,9 +26,11 @@ export function JobBox({ theme, setTheme, info, setInfo }) {
       // Update region, gender
       setInfo((prevInfo) => ({
         ...prevInfo,
-        job: text,
+        category: text,
       }));
+
       setTheme(4);
+      await fetchSignup(info)
   };
   return (
     <Wrap>
@@ -39,7 +42,7 @@ export function JobBox({ theme, setTheme, info, setInfo }) {
       <Buttons>
 
               <ButtonWrap onClick={handleBack}>뒤로</ButtonWrap>
-              <ButtonWrap onClick={handleSubmit}>다음</ButtonWrap>
+              <ButtonWrap onClick={handleSubmit}>가입하기</ButtonWrap>
               </Buttons>
       </FormWrap>
     </Wrap>

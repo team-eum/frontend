@@ -9,9 +9,13 @@ export const Wrap = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
+export const BackWrap = styled.div`
+  position: absolute;
+  top:16px;
+  left:16px;
+`
 export const FormWrap = styled.div`
-  padding: 24px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -23,6 +27,7 @@ export const FormWrap = styled.div`
   border-radius: 16px;
   box-sizing: border-box;
   background: #fbfbfb;
+  position: relative;
 `;
 export const LabelWrap = styled.div`
   width: 100%;
@@ -41,6 +46,13 @@ export const InputWrap = styled.input`
   border-radius: 16px;
   box-sizing: border-box;
 `;
+export const Buttons = styled.div`
+    width: 100%;
+  display: flex;
+  gap: 16px;
+  justify-center: center;
+
+`
 export const ButtonWrap = styled.div`
   width: 100%;
   background-color: #5dadec;
