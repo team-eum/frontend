@@ -58,5 +58,5 @@ export const ToggleWrap = styled.div`
   width: 100%;
   display: flex;
   gap: 16px;
-  justify-center: center;
+  justify-content: center;
 `;

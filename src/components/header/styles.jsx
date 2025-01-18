@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: calc(100%);
   display: flex;
   justify-content: space-between;
+  background: #fbfbfb;
   padding: 22px 0;
   border-bottom: 0.5px solid #d9d9d9;
 `;
