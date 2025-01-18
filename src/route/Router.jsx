@@ -7,6 +7,7 @@ import SchedulePage from "../pages/schedule/SchedulePage";
 import InterviewPage from "../pages/interview/InterviewPage";
 import ScriptPage from "../pages/interview/ScriptPage";
 import MyPage from "../pages/mypage/MyPage";
+import MySchedulePage from "../pages/mypage/MySchedulePage";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
         <Route path="/interview" element={<InterviewPage />} />
         <Route path="/interview/:id" element={<ScriptPage />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage/schedule" element={<MySchedulePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
