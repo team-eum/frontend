@@ -30,7 +30,7 @@ function LandingPage() {
           모두를 이어 함께 성장하는 플랫폼 EUM에서 더 나은 미래를 만들어 가세요.
         </SubText>
       </TextContainer>
-      {user ? (
+      {!user ? (
         <Button
           className="skyblue"
           title="EUM 사용하러 가기"
