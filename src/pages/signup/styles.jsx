@@ -16,13 +16,10 @@ export const FormWrap = styled.div`
   flex-direction: column;
   gap: 24px;
   min-width: 360px;
-  max-width: 700px;
-  width: 100%;
   background-color: white;
-  border: 1px solid #d9d9d9;
+  border: 1px solid #b3b3b3;
   border-radius: 16px;
   box-sizing: border-box;
-  background: #fbfbfb;
 `;
 export const LabelWrap = styled.div`
   width: 100%;
@@ -37,26 +34,16 @@ export const ContentWrap = styled.div`
 export const InputWrap = styled.input`
   width: 100%;
   padding: 16px 24px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid #b3b3b3;
   border-radius: 16px;
   box-sizing: border-box;
 `;
 export const ButtonWrap = styled.div`
   width: 100%;
-  background-color: #5dadec;
+  background-color:#DAA520;
   border-radius: 16px;
   padding-top: 16px;
   padding-bottom: 16px;
-  cursor: pointer;
+  cursor:pointer;
   color: white;
-  margin-top: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-export const ToggleWrap = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 16px;
-  justify-content: center;
 `;

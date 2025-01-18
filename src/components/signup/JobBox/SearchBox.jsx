@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 // Styled Components 정의
@@ -46,10 +46,9 @@ const SuggestionItem = styled.li`
   }
 `;
 
-function SearchBox() {
+function SearchBox({ text,setText }) {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  
   // 예시 데이터
   const data = [
     "소프트웨어 엔지니어",
@@ -76,7 +75,7 @@ function SearchBox() {
 
   const handleInputChange = (e) => {
     const value = e.target.value;
-    setQuery(value);
+    setText(value);
 
     // 입력값에 따라 필터링
     if (value.trim() === "") {
@@ -90,16 +89,16 @@ function SearchBox() {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    setQuery(suggestion); // 선택된 항목을 입력창에 표시
+    setText(suggestion); // 선택된 항목을 입력창에 표시
     setSuggestions([]); // 목록 숨기기
   };
-
+  console.log(query);
   return (
     <Container>
       {/* 입력창 */}
       <Input
         type="text"
-        value={query}
+        value={text}
         onChange={handleInputChange}
         placeholder="Search..."
       />
