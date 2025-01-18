@@ -5,7 +5,6 @@ import {
   InputWrap,
   ContentWrap,
   ButtonWrap,
-  BackWrap,
   ToggleWrap,
   Buttons
 } from "./styles";
@@ -13,6 +12,8 @@ import SearchBox from "./JobBox/SearchBox";
 import {useState} from 'react';
 import {fetchSignup} from './lib/fetchSignup'
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
+
 
 export function JobBox({ theme, setTheme, info, setInfo }) {
   const [text, setText] = useState('');
@@ -40,8 +41,13 @@ export function JobBox({ theme, setTheme, info, setInfo }) {
       <FormWrap>
         <ContentWrap>
           <LabelWrap>직업</LabelWrap>
-          <SearchBox text={text} setText={setText}/>
-        </ContentWrap>
+          <Select
+        isMulti
+        options={options}
+        value={selectedOptions}
+        onChange={handleChange}
+        placeholder="검색하세요..."
+      />        </ContentWrap>
       <Buttons>
 
               <ButtonWrap onClick={handleBack}>뒤로</ButtonWrap>
