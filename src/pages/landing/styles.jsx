@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  min-width: 1280px;
+  width: calc(100%);
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  background: #fbfbfb;
 `;
 
 export const TextContainer = styled.div`
@@ -12,14 +14,13 @@ export const TextContainer = styled.div`
   color: #432a00;
   flex-direction: column;
   background-position: center;
-  text-align: right;
-  align-items: flex-end;
   justify-content: center;
   min-height: 250px;
   margin-top: 70px;
 `;
 
 export const TitleText = styled.h1`
+  text-align: center;
   font-family: "Inter", sans-serif;
   white-space: pre-wrap;
   font-size: 48px;
@@ -28,6 +29,7 @@ export const TitleText = styled.h1`
 `;
 
 export const SubTitleText = styled.h3`
+  text-align: center;
   font-family: "Inter", sans-serif;
   white-space: pre-wrap;
   font-size: 28px;
